@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: #0b1220;
+      color: white;
+    }
+
+    .login-box {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-card {
+      background: #111827;
+      padding: 25px;
+      border-radius: 12px;
+      width: 300px;
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="login-box">
+  <div class="login-card">
+    <h3>SECURE LOGIN</h3>
+
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+
+    <button onclick="login()">LOGIN</button>
+
+    <p id="loginError" style="color:red;"></p>
+  </div>
+</div>
+
+<script>
+const USERS = {
+  "guard1": { password: "1234", role: "GUARD" },
+  "admin": { password: "admin123", role: "ADMIN" }
+};
+
+function login() {
+  const u = document.getElementById("username").value;
+  const p = document.getElementById("password").value;
+
+  if (USERS[u] && USERS[u].password === p) {
+
+    localStorage.setItem("user", JSON.stringify({
+      username: u,
+      role: USERS[u].role
+    }));
+
+    window.location.href = "scanner.html";
+
+  } else {
+    document.getElementById("loginError").innerText = "Invalid login!";
+  }
+}
+</script>
+
+</body>
+</html>
