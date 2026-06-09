@@ -155,7 +155,7 @@ function startScanner() {
         const empId = decodedText.trim();
 
         document.getElementById("result").innerHTML =
-          "<h3>Processing: " + empId + "</h3>";
+          "<h3>Processing...</h3>";
 
         fetch(SCRIPT_URL, {
           method: "POST",
